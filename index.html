@@ -96,6 +96,60 @@ dialog{color-scheme:dark;background:#121626;color:var(--bright);border:1px solid
  .loop svg{max-height:40cqw}.step{padding:2cqw;grid-template-columns:7cqw 1fr}.step strong,.case h3{font-size:4cqw}.step small,.case p,.sliders label,.sources a{font-size:3.3cqw}.sliders{gap:2.4cqw}.sliders input{margin-top:1cqw}.pill,.primary{font-size:3cqw;padding:1.5cqw 2.3cqw}.lattice{gap:3cqw;margin-top:6cqw}.lattice h3{font-size:4cqw}.lattice .small{max-width:none}.case{grid-template-columns:25cqw 1fr;padding-top:2cqw;margin-top:2cqw}.track{height:7cqw}.sources a{padding:3cqw 0}
  #controls{gap:4px;height:50px;padding:0 4px}#controls button{min-height:33px;padding:0 6px;font-size:12px}#counter,#progress,#beat-track{display:none}#chapter{flex:1;max-width:initial}
 }
+#race-open{background:#171a34;border-color:#171a34}
+#race-dialog{
+  width:min(94vw,calc(89dvh * 16 / 9),1340px);max-width:none;max-height:94dvh;aspect-ratio:16/9;margin:auto;
+  padding:0;overflow:auto;border:1px solid #565773;border-radius:14px;container-type:inline-size;
+  background:#090a17;color:#f4f2ff;box-shadow:0 28px 110px #000b;
+}
+#race-dialog::backdrop{background:#03030bf0}
+#race-dialog[open] .race-stage{animation:race-in .58s cubic-bezier(.16,1,.3,1) both}
+@keyframes race-in{from{opacity:0;transform:scale(.97);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.race-stage{
+ position:relative;isolation:isolate;min-height:100%;display:grid;align-content:start;
+ padding:3.1cqw 4.4cqw 2.8cqw;overflow:hidden;
+ background:radial-gradient(ellipse at 24% 43%,#202a654d,transparent 44%),radial-gradient(ellipse at 76% 43%,#592b284f,transparent 42%),#090a17;
+}
+.race-stage::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(0deg,#b4c2ff0a 0 1px,transparent 1px 5px);mask-image:linear-gradient(#0000,#0009,#0000)}
+.race-top{display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
+.race-title{margin:.7cqw 0 0;font-size:4.9cqw;line-height:.96;letter-spacing:-.051em;text-align:left;text-wrap:wrap}
+.race-kicker,.race-name,.race-time,.race-caption{font:700 max(12px,1.1cqw) var(--mono);letter-spacing:.075em}
+.race-kicker{color:#fdbc91}
+.race-case{margin-top:1.15cqw;color:#c2c4de;font-size:max(12px,1.19cqw)}
+.race-controls{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}
+.race-controls button{background:#16192e;color:#f0eeff;min-height:34px;font-size:max(12px,1.05cqw);white-space:nowrap}
+.race-controls button:disabled{opacity:.4}
+.race-dials{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.2cqw;margin:1.45cqw auto 0;width:min(96%,84cqw)}
+.race-dial{display:grid;min-width:0;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;justify-items:center;--tint:#bacbff}
+.race-dial.feedback{--tint:#ffad7b}
+.race-dial canvas{grid-row:1;grid-column:1;width:100%;height:25.4cqw;display:block}
+.race-value{grid-row:1;grid-column:1;align-self:center;margin-top:-.5cqw;font-size:9.4cqw;font-weight:800;line-height:1;letter-spacing:-.07em;font-variant-numeric:tabular-nums;color:var(--tint);text-shadow:0 0 3.1cqw color-mix(in srgb,var(--tint) 25%,transparent)}
+.race-name{display:block;text-align:center;color:var(--tint);padding-top:.35cqw}
+.race-timeline{margin-top:2.45cqw}
+.race-timeline canvas{width:100%;height:max(30px,3.9cqw);display:block}
+.race-timeline-meta{display:grid;grid-template-columns:1fr auto 1fr;gap:1cqw;align-items:center;margin-top:.35cqw;color:#aeb3d0}
+.race-timeline-meta span:last-child{text-align:right}
+.race-time{color:#fcf0e9;font-variant-numeric:tabular-nums;text-align:center}
+.race-result{margin-top:1.55cqw;min-height:2.9em;text-align:center;color:#eee9ff;font-size:max(14px,1.5cqw);font-weight:700}
+.race-stage[data-finished="true"] .race-result{animation:race-result .85s cubic-bezier(.16,1,.3,1) both}
+@keyframes race-result{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:650px) and (orientation:portrait){
+ #race-dialog{width:100%;height:100dvh;max-height:none;border:0;border-radius:0;aspect-ratio:auto}
+ .race-stage{padding:6cqw 5cqw;align-content:center}
+ .race-top{display:block}
+ .race-title{font-size:10.4cqw;margin-top:2.4cqw}
+ .race-case{margin-top:3cqw}
+ .race-controls{justify-content:flex-start;margin-top:4cqw}
+ .race-dials{margin-top:6cqw;width:100%;gap:1cqw}
+ .race-dial canvas{height:43cqw}
+ .race-value{font-size:13cqw;margin-top:-1.2cqw}
+ .race-name{padding-top:2cqw;letter-spacing:0}
+ .race-timeline{margin-top:7cqw}
+ .race-timeline canvas{height:11cqw}
+ .race-timeline-meta{margin-top:2cqw}
+ .race-caption{font-size:10px}
+ .race-result{margin-top:5cqw}
+}
 </style>
 </head>
 <body>
@@ -113,7 +167,7 @@ dialog{color-scheme:dark;background:#121626;color:var(--bright);border:1px solid
 </nav>
 <div id="blackout" hidden aria-label="Blackout. Click to return."></div>
 <dialog id="menu"><header><h2 id="menu-title">Scenes</h2><form method="dialog"><button class="close">Close</button></form></header><div id="chapters"></div><p style="margin-top:1rem"><span class="kbd">← →</span> <span id="keys-one">Scenes</span> · <span class="kbd">.</span> <span id="keys-two">Blackout</span> · <span class="kbd">F</span> <span id="keys-three">Full screen</span></p></dialog>
-<dialog id="presenter"><header><h2 id="presenter-title"></h2><form method="dialog"><button class="close">Close</button></form></header><p id="presenter-cue"></p><p id="presenter-text"></p></dialog>
+<dialog id="race-dialog" aria-labelledby="race-title"></dialog><dialog id="presenter"><header><h2 id="presenter-title"></h2><form method="dialog"><button class="close">Close</button></form></header><p id="presenter-cue"></p><p id="presenter-text"></p></dialog>
 </main>
 <script>
 'use strict';
@@ -147,7 +201,7 @@ const SCENES=[
    ['The successor joins the team','下一代加入团队','The next round starts with a stronger researcher.','下一轮有了更强的研究员。']
   ].map(([a,b,c,d],i)=>`<button class="step" data-step="${i}" aria-pressed="${i===selectedStep}"><span class="mark">0${i+1}</span><strong>${T(a,b)}</strong><small>${T(c,d)}</small></button>`).join('')}</div></section>${foot('Related result · Google DeepMind’s AlphaEvolve','相关实证 · Google DeepMind 的 AlphaEvolve','alpha')}`},
  {names:['Run the experiment','现场实验'],style:'paper',effect:'wipe',notes:['Calibration is the lesson. Each round takes the longer of the selected minimum and the previous round multiplied by one minus the savings. We count completed rounds during 365 days, starting from a 30-day cycle. Ask the audience to choose one setting. Point out that the chart only models cadence. It assumes nothing about the size of capability gains.','让观众选一次设置。第一轮固定 30 天。此后每轮用时取上一轮缩短后的用时与下限中的较大值。模型统计 365 天内完成的轮数，只展示研发节奏，未估算能力每轮提升多少。'],
-  draw:()=>`${title('How fast can a year get?','一年里能跑完几轮？')}<div class="sim"><div class="sliders reveal" ${stagger(1)}><div><label for="saving">${T('Time saved each round','每轮节省时间')} <output id="saving-value"></output></label><input id="saving" type="range" min="0" max="55" step="1"></div><div><label for="floor">${T('Minimum cycle length','每轮最短用时')} <output id="floor-value"></output></label><input id="floor" type="range" min="1" max="30" step="1"></div><div class="presets"><button class="pill" data-setting="0,14">${T('No feedback','无反馈')}</button><button class="pill" data-setting="15,10">${T('Steady','稳步加速')}</button><button class="pill" data-setting="30,3">${T('Fast','快速起飞')}</button></div><div class="hudrow"><button id="play-year" class="primary">${T('Run one year','跑完一年')}</button><span id="clock" class="small"></span></div></div><div class="reveal" ${stagger(2)}><div class="metric"><span id="cycles" class="big" aria-live="polite">0</span><span class="small">${T('completed research<br>cycles out of 365 days','365 天内完成的<br>整轮研发')}</span></div><svg class="plot" viewBox="0 0 600 215" role="img" aria-labelledby="simulation-title"><title id="simulation-title">${T('Completed cycles over one year','一年中逐步完成的轮数')}</title><path class="gridline" d="M55 24V172H562M55 98H562M55 24H562"/><path id="base-curve" fill="none" stroke="#625d78" stroke-width="1.5" stroke-dasharray="5 5"/><path id="sim-curve" class="trace"/><circle id="sim-marker" r="5" class="node"/><g font-size="13"><text x="55" y="197">0</text><text x="524" y="197">${T('365 days','365 天')}</text><text x="12" y="176">0</text><text id="scale-mid" x="9" y="102"></text><text id="scale-max" x="9" y="29"></text></g></svg></div></div>${foot('Toy model · first cycle: 30 days · dashed line: no feedback','示意模型 · 首轮 30 天 · 虚线为无反馈基线')}`},
+  draw:()=>`${title('How fast can a year get?','一年里能跑完几轮？')}<div class="sim"><div class="sliders reveal" ${stagger(1)}><div><label for="saving">${T('Time saved each round','每轮节省时间')} <output id="saving-value"></output></label><input id="saving" type="range" min="0" max="55" step="1"></div><div><label for="floor">${T('Minimum cycle length','每轮最短用时')} <output id="floor-value"></output></label><input id="floor" type="range" min="1" max="30" step="1"></div><div class="presets"><button class="pill" data-setting="0,14">${T('No feedback','无反馈')}</button><button class="pill" data-setting="15,10">${T('Steady','稳步加速')}</button><button class="pill" data-setting="30,3">${T('Fast','快速起飞')}</button></div><div class="hudrow"><button id="play-year" class="primary">${T('Run one year','跑完一年')}</button><button id="race-open" class="primary">${T('Compare on stage','舞台对比')}</button><span id="clock" class="small"></span></div></div><div class="reveal" ${stagger(2)}><div class="metric"><span id="cycles" class="big" aria-live="polite">0</span><span class="small">${T('completed research<br>cycles out of 365 days','365 天内完成的<br>整轮研发')}</span></div><svg class="plot" viewBox="0 0 600 215" role="img" aria-labelledby="simulation-title"><title id="simulation-title">${T('Completed cycles over one year','一年中逐步完成的轮数')}</title><path class="gridline" d="M55 24V172H562M55 98H562M55 24H562"/><path id="base-curve" fill="none" stroke="#625d78" stroke-width="1.5" stroke-dasharray="5 5"/><path id="sim-curve" class="trace"/><circle id="sim-marker" r="5" class="node"/><g font-size="13"><text x="55" y="197">0</text><text x="524" y="197">${T('365 days','365 天')}</text><text x="12" y="176">0</text><text id="scale-mid" x="9" y="102"></text><text id="scale-max" x="9" y="29"></text></g></svg></div></div>${foot('Toy model · first cycle: 30 days · dashed line: no feedback','示意模型 · 首轮 30 天 · 虚线为无反馈基线')}`},
  {names:['The private frontier','实验室里的前沿'],style:'hero',art:'factory',effect:'iris',notes:['In a fast scenario, the lab can put a stronger model to work on the next round without waiting for the customer launch. The difference between the research frontier and what can be bought or used matters for forecasting and oversight. Several iterations before release is a scenario assumption.','在快速起飞情景中，实验室可以先让新模型投入下一轮研发，再向用户发布。内部前沿和公众能用到的模型会产生时差。多轮迭代先于公开发布，是这里的情景假设。'],
   draw:()=>`${title('The public sees a launch.<br>The lab is already on<br>the next round.','公众刚看到发布。<br>实验室已进入下一轮。')}${lead('A successor can join the research team before it reaches customers.','下一代模型可以先成为研究员，再交到用户手中。')}${foot('Fast-takeoff scenario','快速起飞情景')}`},
  {names:['The other clock','另一只钟'],style:'cobalt',effect:'lift',notes:['Draw the audience’s attention to the two clocks. The upper bar stands for one fixed-length institutional decision. Lower bars represent repeatedly shrinking research cycles in that same window. Real-world bottlenecks are explored on the next scene. Cycle lengths are illustrative.','提醒观众注意两只钟。上方代表一项固定耗时的机构决策。下方是在同一窗口里不重复等长、越来越短的 AI 研发周期。图中时长只用于示意。'],
@@ -200,6 +254,159 @@ function runModel(saving,floor){
  return endings;
 }
 const baseline=runModel(0,1);
+function runComparison(button, schedule, assumptions){
+ const dialog=el('race-dialog');
+ // Both lanes use the same 365-day calendar and the simulator's actual event times.
+ const tracks=[
+   {ends:baseline,color:'#a9c3ff',peak:'#e2ebff'},
+   {ends:schedule,color:'#ff9c6a',peak:'#ffe1ae'}
+ ];
+ const duration=10800;
+ dialog.innerHTML=`<section class="race-stage">
+   <div class="race-top"><div><div class="race-kicker">${T('SIMULATION · COMPLETED RESEARCH CYCLES','情景模拟 · 已完成的研发轮次')}</div>
+   <h2 id="race-title" class="race-title">${T('One year. Two clocks.','同一年，两只钟。')}</h2>
+   <p class="race-case">${T(`Start: 30 days per cycle · Feedback: −${assumptions.saving}% time per round · Minimum: ${assumptions.floor} days`,`首轮 30 天 · 此后每轮缩短 ${assumptions.saving}% · 单轮最少 ${assumptions.floor} 天`)}</p></div>
+   <div class="race-controls">
+   <button data-race="pause">${T('Pause','暂停')}</button>
+   <button data-race="skip">${T('Skip to result','看结果')}</button>
+   <button data-race="close">${T('Close','关闭')}</button></div></div>
+   <div class="race-dials">
+   <div class="race-dial"><canvas aria-hidden="true"></canvas><strong class="race-value">0</strong><span class="race-name">${T('No feedback','无反馈')}</span></div>
+   <div class="race-dial feedback"><canvas aria-hidden="true"></canvas><strong class="race-value">0</strong><span class="race-name">${T('Your settings','你的设定')}</span></div>
+   </div>
+   <div class="race-timeline"><canvas aria-hidden="true"></canvas><div class="race-timeline-meta">
+   <span class="race-caption">${T('START','起点')}</span><strong class="race-time"></strong><span class="race-caption">${T('YEAR END','年末')}</span></div></div>
+   <p class="race-result" aria-live="polite"></p>
+ </section>`;
+ const panel=dialog.querySelector('.race-stage');
+ const canvases=panel.querySelectorAll('.race-dial canvas');
+ const values=panel.querySelectorAll('.race-value');
+ const timeline=panel.querySelector('.race-timeline canvas');
+ const result=panel.querySelector('.race-result');
+ const clock=panel.querySelector('.race-time');
+ const main=panel.querySelector('[data-race="pause"]');
+ const skip=panel.querySelector('[data-race="skip"]');
+ const close=panel.querySelector('[data-race="close"]');
+ let elapsed=0, prior=null, frame=0, running=false, finished=false, lastPulse=0;
+
+ function canvasFrame(canvas){
+   const w=canvas.clientWidth,h=canvas.clientHeight;
+   const scale=Math.min(devicePixelRatio||1,2);
+   if(canvas.width!==Math.round(w*scale)||canvas.height!==Math.round(h*scale)){
+     canvas.width=Math.round(w*scale);canvas.height=Math.round(h*scale);
+   }
+   const ctx=canvas.getContext('2d');
+   if(!ctx||!w||!h)return null;
+   ctx.setTransform(scale,0,0,scale,0,0);
+   ctx.clearRect(0,0,w,h);
+   return {ctx,w,h};
+ }
+ const angle=day=>-Math.PI/2+(day/365)*Math.PI*2;
+ function radial(ctx,x,y,r1,r2,a){
+   ctx.moveTo(x+Math.cos(a)*r1,y+Math.sin(a)*r1);
+   ctx.lineTo(x+Math.cos(a)*r2,y+Math.sin(a)*r2);
+ }
+ function dial(canvas,track,day,n){
+   const surface=canvasFrame(canvas);
+   if(!surface)return;
+   const {ctx,w,h}=surface;
+   const x=w/2,y=h/2,r=Math.min(w,h)*.402;
+   const pulse=n>0?Math.pow(Math.max(0,1-(day-track.ends[n-1])/7),2):0;
+   const bloom=ctx.createRadialGradient(x,y,r*.26,x,y,r*1.22);
+   bloom.addColorStop(0,'transparent');bloom.addColorStop(.72,track.color+(n?'26':'12'));bloom.addColorStop(1,'transparent');
+   ctx.fillStyle=bloom;ctx.fillRect(x-r*1.28,y-r*1.28,r*2.56,r*2.56);
+   for(const scale of [.72,.83,1,1.07]){
+     ctx.lineWidth=1;ctx.strokeStyle=track.color+'33';
+     ctx.beginPath();ctx.arc(x,y,r*scale,0,Math.PI*2);ctx.stroke();
+   }
+   ctx.beginPath();
+   for(let i=0;i<60;i++)radial(ctx,x,y,r*(i%5===0?1.08:1.12),r*1.15,angle(i*365/60));
+   ctx.strokeStyle=track.color+'83';ctx.stroke();
+   if(day>0){
+     ctx.beginPath();ctx.arc(x,y,r,-Math.PI/2,angle(day));
+     ctx.strokeStyle=track.color;ctx.lineWidth=Math.max(1.7,r*.021);ctx.stroke();
+   }
+   ctx.lineWidth=Math.max(1,r*.011);
+   ctx.beginPath();
+   for(let i=0;i<n;i++)radial(ctx,x,y,r*.85,r*.98,angle(track.ends[i]));
+   ctx.strokeStyle=track.peak;ctx.stroke();
+   const a=angle(day);
+   const sx=x+Math.cos(a)*r,sy=y+Math.sin(a)*r;
+   const head=ctx.createRadialGradient(sx,sy,0,sx,sy,Math.max(2,r*(.11+pulse*.18)));
+   head.addColorStop(0,track.peak);head.addColorStop(.3,track.color+'ac');head.addColorStop(1,'transparent');
+   ctx.fillStyle=head;ctx.beginPath();ctx.arc(sx,sy,r*.3,0,Math.PI*2);ctx.fill();
+ }
+ function strip(day,counts){
+   const surface=canvasFrame(timeline);
+   if(!surface)return;
+   const {ctx,w,h}=surface;
+   const x=d=>3+(w-6)*d/365;
+   ctx.strokeStyle='#7d83a84c';ctx.lineWidth=1;ctx.beginPath();
+   for(let i=0;i<=12;i++){ctx.moveTo(x(365*i/12),0);ctx.lineTo(x(365*i/12),h)}
+   ctx.stroke();
+   tracks.forEach((track,lane)=>{
+     const y=h*(lane===0?.26:.72);
+     ctx.strokeStyle=track.color+'5e';ctx.beginPath();ctx.moveTo(3,y);ctx.lineTo(w-3,y);ctx.stroke();
+     ctx.strokeStyle=track.color;ctx.beginPath();
+     for(let i=0;i<counts[lane];i++){const xx=x(track.ends[i]);ctx.moveTo(xx,y-h*.17);ctx.lineTo(xx,y+h*.17)}
+     ctx.stroke();
+   });
+   ctx.strokeStyle='#fff8e5';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x(day),0);ctx.lineTo(x(day),h);ctx.stroke();
+ }
+ function draw(day){
+   const counts=tracks.map(track=>track.ends.filter(end=>end<=day).length);
+   tracks.forEach((track,i)=>{
+     if(values[i].textContent!==String(counts[i]))values[i].textContent=counts[i];
+     dial(canvases[i],track,day,counts[i]);
+   });
+   strip(day,counts);
+   clock.textContent=formatStep(Math.floor(day));
+   return counts;
+ }
+ function finish(){
+   cancelAnimationFrame(frame);running=false;finished=true;elapsed=duration;
+   const [control,feedback]=draw(365);
+   panel.dataset.finished='true';
+   main.textContent=T('Replay','重播');skip.disabled=true;
+   result.textContent=T(`Year complete. ${control} cycles without feedback · ${feedback} with your settings.`,`同一年结束。无反馈完成 ${control} 轮 · 按你的设定完成 ${feedback} 轮。`);
+ }
+ function tick(now){
+   if(!running)return;
+   if(prior!==null)elapsed+=Math.min(100,now-prior);
+   prior=now;
+   if(elapsed>=duration){
+     finish();cue('lift');return;
+   }
+   const before=values[1].textContent;
+   const [,feedback]=draw(365*elapsed/duration);
+   if(String(feedback)!==before&&now-lastPulse>470){lastPulse=now;cue('cut')}
+   frame=requestAnimationFrame(tick);
+ }
+ function begin(){
+   if(reduce.matches){finish();main.disabled=true;return}
+   running=true;finished=false;prior=null;main.textContent=T('Pause','暂停');
+   skip.disabled=false;
+   frame=requestAnimationFrame(tick);
+ }
+ main.onclick=()=>{
+   if(finished){
+     elapsed=0;lastPulse=0;result.textContent='';panel.dataset.finished='false';draw(0);begin();
+   }else if(running){
+     running=false;cancelAnimationFrame(frame);main.textContent=T('Resume','继续');
+   }else begin();
+ };
+ skip.onclick=finish;
+ close.onclick=()=>dialog.close();
+ const resize=new ResizeObserver(()=>draw(365*elapsed/duration));
+ dialog.addEventListener('close',()=>{
+   running=false;cancelAnimationFrame(frame);resize.disconnect();button.focus();
+ },{once:true});
+ dialog.showModal();
+ resize.observe(panel);
+ close.focus();
+ draw(0);begin();
+}
+
 function simulator(scene){
  const get=id=>scene.querySelector('#'+id);
  const saving=get('saving'), floor=get('floor'), curve=get('sim-curve'), example=get('base-curve'), marker=get('sim-marker');
@@ -256,6 +463,8 @@ function simulator(scene){
    }
    motion=requestAnimationFrame(tick);
  });
+ const compare=get('race-open');
+ compare.addEventListener('click',()=>runComparison(compare,results,settings));
  update();
  return ()=>cancelAnimationFrame(motion);
 }

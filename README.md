@@ -13,4 +13,4 @@ Open [index.html](index.html) in a browser. The presentation is self-contained a
 | O | Scene menu |
 | . | Blackout |
 
-Scene 4 lets you change how much time each research cycle saves and set a minimum cycle length. The simulation starts with a 30-day cycle and counts completed rounds over 365 days. Its assumptions illustrate how feedback affects research cadence. The final scene links to the sources for the measured claims.
+Scene 4 lets you change how much time each research cycle saves and set a minimum cycle length. The simulation starts with a 30-day cycle and counts completed rounds over 365 days. Its assumptions illustrate how feedback affects research cadence. Select **Compare on stage** to watch the no-feedback baseline and your settings play out on the same timeline. The final scene links to the sources for the measured claims.
